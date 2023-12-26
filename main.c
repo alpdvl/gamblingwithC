@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include <windows.h>
 
 
 void displayMenu();
@@ -10,8 +10,8 @@ int roller();
 
 // ill fix some text formatting issues and polish others
 // ill add true last rolls
-// might add true spinning wheel with so-called animation
-// might add account/login system
+// might add true spinning wheel with so-called animation (done)
+// might add account/login system 
 
 
 
@@ -117,7 +117,7 @@ void displayMenu()
 
                     while (pastactions[i]!= 0)
                     {
-                        printf("%d$\n",pastactions[i]);
+                        printf("$%d\n",pastactions[i]);
                         i = i + 1;
 
 
@@ -154,15 +154,15 @@ int playroulet(int amount)
     scanf("%d",&color);
     if(color==1)
     { printf("your choice is Black\n");
-        printf("please enter your bet amount\n");
+        printf("please enter your bet amount\n$");
         scanf("%d",&betamount);}
     else if(color == 2)
     { printf("your choice is red\n");
-        printf("please enter your bet amount\n");
+        printf("please enter your bet amount\n$");
         scanf("%d",&betamount);}
     else if(color == 3)
     { printf("your choice is green\n");
-        printf("please enter your bet amount\n");
+        printf("please enter your bet amount\n$");
         scanf("%d",&betamount);}
     else if(color ==4)
     { printf("you're heading back to choosing color menu\n");
@@ -205,9 +205,11 @@ int playroulet(int amount)
         }
     }
 
-    printf("your current money is: %d\n",money);
+    printf("your current money is: $%d\n",money);
     printf("press enter to continue...");
     fflush(stdin);
+    
+
     fgets(enter,2,stdin);
     return money;
 
@@ -221,7 +223,30 @@ int playroulet(int amount)
 
 int roller()
 {
-    int answer= rand() % 37;
+    int flag=0;
+    int wheel[38]={0,1,2,36,3,35,4,
+                   34,5,33,6,32,7,31,8,30,9,29,10,28,11,27
+    ,12,26,13,25,14,24,15,23,16,22,17,21,18,20,19,0};
+    system("cls");
+    int answer= (rand() % 37) + 37;
+
+    while (0 < answer/37) {
+        for (int i = 0; i <= 35; ++i) {
+
+            printf("\n\n%10d<%d>%d", wheel[i], wheel[i + 1], wheel[i + 2]);
+            Sleep(150);
+            system("cls");
+        }
+
+        answer -= 37;
+    }
+
+    for (int i = 0; i <= answer - 1; ++i) {
+        printf("\n\n%10d<%d>%d", wheel[i], wheel[i + 1], wheel[i + 2]);
+        Sleep(200);
+        system("cls");
+    }
+
     return answer;
 }
 
