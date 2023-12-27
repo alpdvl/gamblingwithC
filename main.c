@@ -8,10 +8,10 @@ void displayMenu();
 int playroulet(int amount);
 int roller();
 
-// ill fix some text formatting issues and polish others
-// ill add true last rolls
+// ill fix some text formatting issues and polish others(done?)
+// ill add true last rolls (later)
 // might add true spinning wheel with so-called animation (done)
-// might add account/login system 
+// might add account/login system
 
 
 
@@ -33,14 +33,14 @@ void displayMenu()
     int transcount=-1;
     int pastactions[100]={0};
     int choice=1;
-    int money=3210;
+    int money=1923;
     int transaction=0;
     char enter[2];
     while (choice !=0) {
         system("cls");
 
-        printf("type what you want to do_\n");
-        printf("1)roulett.\n2)banking\n0)Quit\n");
+        printf("     >>>>> Roul.exe <<<<<\nType what you want to do\n-----------------------------\n");
+        printf("1) Play Roulette\n2) Access Your RoulWallet\n0) Quit\n");
         scanf("%d", &choice);
         if (choice == 1) {
             money = playroulet(money);
@@ -49,14 +49,14 @@ void displayMenu()
         {
             while(choice !=9) {
                 system("cls");//windows specific function used in here!
-                printf("type what you want to do...\n1)Deposit\n2)Withdraw\n3)Past Transactions\n9)Back\n");
-                printf("You've: %d$ in your RoulWallet\n", money);
+                printf(">>>>> Roul.exe <<<<<\n1)Deposit\n2)Withdraw\n3)Past Transactions\n9)Back\n");
+                printf("You've: $%d in your RoulWallet\n", money);
 
 
 
                 scanf("%d", &choice);
                 system("cls");
-                printf("You've: %d$ in your RoulWallet\n", money);
+                printf("You've: $%d in your RoulWallet\n", money);
                 if (choice == 1) {
                     printf("type the amount which you want to deposit:\n");
                     scanf("%d",&transaction);
@@ -142,6 +142,8 @@ void displayMenu()
 
 int playroulet(int amount)
 {
+    char red[4]="RED";char black[6]="BLACK";char green[6]="GREEN";
+    int result;
     char enter[2];
     int roll;
     int color;
@@ -167,50 +169,65 @@ int playroulet(int amount)
     else if(color ==4)
     { printf("you're heading back to choosing color menu\n");
         }
-    money = money - betamount;
-    roll = roller();
-    if (roll==0)
+    if (color != 4)
     {
-        if(color==0)
+        money = money - betamount;
+        roll = roller();
+        if (roll==0)
         {
-            printf("congrats you hit the green!\n");
-            money= money + (betamount *14);
+            result = 3;
+            if(color==3)
+            {
+                printf("congrats you hit the green!\n");
+                money= money + (betamount *14);
 
+            }
+            else  { printf("you missed the green fortune...");}
         }
-        else  { printf("you missed the green fortune...");}
+        else {
+            if (color == 1) {
+                if (roll % 2 == 1)
+                {
+                    printf("congrats you hit black!\n");
+                    money= money + (betamount * 2);
+                    result = 1;
+                }
+                else
+                {
+                    printf("you lose!\n");
+                    result = 2;
+                }
+            }
+
+            else{
+                if (roll % 2 ==0)
+                {
+                    printf("congrats you hit red!\n");
+                    money= money +(betamount *2);
+                    result = 2;
+                }
+                else
+                {
+                    printf("you lose!\n");
+                    result = 1;
+                }
+            }
+        }
+        if (result ==1)
+        {printf("ROLL WAS: %s\n",black);}
+        else if(result==2)
+        {printf("ROLL WAS: %s\n",red);}
+        else if(result==3)
+        { printf("ROLL WAS: %s\n",green);}
+
+        printf("your current money is: $%d\n",money);
+        printf("press enter to continue...");
+        fflush(stdin);
+
+
+        fgets(enter,2,stdin);
     }
-    else {
-        if (color == 1) {
-            if (roll % 2 == 1)
-            {
-                printf("congrats you hit black!\n");
-                money= money + (betamount * 2);
-            }
-            else
-            {
-                printf("you lose!\n");
-            }
-        }
 
-        else{
-            if (roll % 2 ==0)
-            {
-                printf("congrats you hit red!\n");
-                money= money +(betamount *2);
-            }
-            else
-            {
-                printf("you lose!\n");
-            }
-        }
-    }
-
-    printf("your current money is: $%d\n",money);
-    printf("press enter to continue...");
-    fflush(stdin);
-    
-
-    fgets(enter,2,stdin);
     return money;
 
 
@@ -232,9 +249,11 @@ int roller()
 
     while (0 < answer/37) {
         for (int i = 0; i <= 35; ++i) {
-
-            printf("\n\n%10d<%d>%d", wheel[i], wheel[i + 1], wheel[i + 2]);
-            Sleep(150);
+            printf("      >>>> |Rollin| <<<<");
+            printf("\n      |----------------|");
+            printf("\n      | %3d < %2d > %2d  |", wheel[i], wheel[i + 1], wheel[i + 2]);
+            printf("\n      |----------------|");
+            Sleep(130);
             system("cls");
         }
 
@@ -242,8 +261,11 @@ int roller()
     }
 
     for (int i = 0; i <= answer - 1; ++i) {
-        printf("\n\n%10d<%d>%d", wheel[i], wheel[i + 1], wheel[i + 2]);
-        Sleep(200);
+        printf("      >>>> |Rollin| <<<<");
+        printf("\n      |----------------|");
+        printf("\n      | %3d < %2d > %2d  |", wheel[i], wheel[i + 1], wheel[i + 2]);
+        printf("\n      |----------------|");
+        Sleep(220);
         system("cls");
     }
 
