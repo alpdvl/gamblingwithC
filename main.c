@@ -19,7 +19,7 @@ int roller();
 
 int main() {
 
-    printf("Hello, World!\n");
+    //printf("Hello, World!\n");
     srand(time(NULL)); // seeding rand func with time
     displayMenu();
 
