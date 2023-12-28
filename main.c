@@ -44,7 +44,7 @@ void displayMenu()
 
         printf("     >>>>> Roul.exe <<<<<\n\n|Type what you want to do\n|-----------------------------\n");
         printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|0) Quit\n>");
-        printf("TURN: %d",turn); // for debugging
+        printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
         scanf("%d", &choice);
         if (choice == 1) {
             money = playroulet(money,&turn);
@@ -160,10 +160,10 @@ int playroulet(int amount, int* turn)
     system("cls");
     printf("|last rolls were: 5(b) 12(r) 17(b) 28(r) 31(b)\n----------------------\n"); // ill fix this later
     printf("|you're playing roulette please enter your bet color\n"
-           "\n|1)Black\n|2)Red\n|3)Green\n|4)Cancel the action...");
-    printf("TURN: %d\n",*turn); // for debugging
-    printf("0>%d  1>%d  2>%d  3>%d  4>%d\n",lastrollsnum[0],lastrollsnum[1],lastrollsnum[2],lastrollsnum[3],lastrollsnum[4]);// for debugging
-    printf("0>%c  1>%c  2>%c  3>%c  4>%c\n",lastrollscolor[0],lastrollscolor[1],lastrollscolor[2],lastrollscolor[3],lastrollscolor[4]); // for debugging
+           "\n|1)Black\n|2)Red\n|3)Green\n|4)Cancel the action...\n");
+    printf("(#WIP#)TURN: %d(#WIP#)\n",*turn); // for debugging
+    printf("(#WIP#)0>%d  1>%d  2>%d  3>%d  4>%d(#WIP#)\n",lastrollsnum[0],lastrollsnum[1],lastrollsnum[2],lastrollsnum[3],lastrollsnum[4]);// for debugging
+    printf("(#WIP#)0>%c  1>%c  2>%c  3>%c  4>%c(#WIP#)\n",lastrollscolor[0],lastrollscolor[1],lastrollscolor[2],lastrollscolor[3],lastrollscolor[4]); // for debugging
     scanf("%d",&color);
     system("cls");
     if(color==1)
