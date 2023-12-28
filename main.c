@@ -5,11 +5,13 @@
 
 
 void displayMenu();
-int playroulet(int amount);
+int playroulet(int amount, int* turn); // using pointers to return more than one data from function
 int roller();
+char lastrollscolor[6];
+int lastrollsnum[5];
 
 // ill fix some text formatting issues and polish others(done??)
-// ill add true last rolls (later)
+// ill add true last rolls (almost done)
 // might add true spinning wheel with so-called animation (done)
 // might add account/login system
 
@@ -30,6 +32,7 @@ int main() {
 
 void displayMenu()
 {
+    int turn=0; //this var. helps with looping for writing last rolls in play roulette function
     int transcount=-1;
     int pastactions[100]={0};
     int choice=1;
@@ -41,9 +44,10 @@ void displayMenu()
 
         printf("     >>>>> Roul.exe <<<<<\n\n|Type what you want to do\n|-----------------------------\n");
         printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|0) Quit\n>");
+        printf("TURN: %d",turn); // for debugging
         scanf("%d", &choice);
         if (choice == 1) {
-            money = playroulet(money);
+            money = playroulet(money,&turn);
         }
         else if(choice ==2)
         {
@@ -140,8 +144,12 @@ void displayMenu()
 
 }
 
-int playroulet(int amount)
+int playroulet(int amount, int* turn)
 {
+
+
+
+
     char red[4]="RED";char black[6]="BLACK";char green[6]="GREEN";
     int result;
     char enter[2];
@@ -153,6 +161,9 @@ int playroulet(int amount)
     printf("|last rolls were: 5(b) 12(r) 17(b) 28(r) 31(b)\n----------------------\n"); // ill fix this later
     printf("|you're playing roulette please enter your bet color\n"
            "\n|1)Black\n|2)Red\n|3)Green\n|4)Cancel the action...");
+    printf("TURN: %d\n",*turn); // for debugging
+    printf("0>%d  1>%d  2>%d  3>%d  4>%d\n",lastrollsnum[0],lastrollsnum[1],lastrollsnum[2],lastrollsnum[3],lastrollsnum[4]);// for debugging
+    printf("0>%c  1>%c  2>%c  3>%c  4>%c\n",lastrollscolor[0],lastrollscolor[1],lastrollscolor[2],lastrollscolor[3],lastrollscolor[4]); // for debugging
     scanf("%d",&color);
     system("cls");
     if(color==1)
@@ -220,12 +231,24 @@ int playroulet(int amount)
             }
         }
         if (result ==1)
-        {printf("|ROLL WAS: %s\n",black);}
+        {
+            printf("|ROLL WAS: %s\n",black);
+            lastrollscolor[*turn%5]='B'; // deferencing
+        }
         else if(result==2)
-        {printf("|ROLL WAS: %s\n",red);}
+        {
+            printf("|ROLL WAS: %s\n",red);
+            lastrollscolor[*turn%5]='R';
+        }
         else if(result==3)
-        { printf("|ROLL WAS: %s\n",green);}
+        {
+            printf("|ROLL WAS: %s\n",green);
+            lastrollscolor[*turn%5]='G';
+        }
 
+        lastrollsnum[*turn%5]=roll;
+
+        *turn = *turn + 1;
         printf("|your current money is: $%d\n",money);
         printf("|press enter to continue...");
         fflush(stdin);
@@ -272,7 +295,7 @@ int roller()
 
         answer -= 37;
     }
-    int result=0;
+    int result=0; // here we might have issues with odds for some numbers i will check it in the near future
     for (int i = 0; i <= answer - 1; ++i) {
         printf("      >>>> |Rollin| <<<<");
         printf("\n      |-<---<---<---<--|");
