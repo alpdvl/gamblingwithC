@@ -7,6 +7,7 @@
 void displayMenu();
 int playroulet(int amount, int* turn); // using pointers to return more than one data from function
 int roller();
+int playcoin(int amount);
 char lastrollscolor[7];
 int lastrollsnum[5];
 
@@ -43,7 +44,7 @@ void displayMenu()
         system("cls");
 
         printf("     >>>>> Roul.exe <<<<<\n\n|Type what you want to do\n|-----------------------------\n");
-        printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|0) Quit\n>");
+        printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|3) Play Coinflip\n|0) Quit\n>");
         //printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
         scanf("%d", &choice);
         if (choice == 1) {
@@ -139,6 +140,10 @@ void displayMenu()
                 }
             }
 
+        }
+        else if(choice == 3)
+        {
+            money = playcoin(money);
         }
     }
 
@@ -347,6 +352,92 @@ int roller()
 
 
     return result;
+}
+
+int playcoin(int amount)
+{
+    int result=0;
+    int betamount=0;
+    char choice;
+    int money = amount;
+    char enter[2];
+    system("cls");
+
+    printf("|Currently you're playing coinflip\n");
+    printf("|Pick heads or tails and let the coin decide your fate!\n|Type H for Heads\n|Type T for Tails\n>");
+    fflush(stdin);
+    scanf("%c",&choice);
+
+    result=rand() % 2;//#WIP#
+
+    system("cls");
+
+    if (choice == 'H')
+    {
+
+        printf("|You chose Heads\n|Please enter your bet amount\n");
+        scanf("%d",&betamount);
+        if(money<betamount)
+        {
+
+                printf("|hold on there are you trying to rob us???\n|You're heading back to main menu...\n");
+                Sleep(2000);
+
+        }
+        else {
+            money = money - betamount;
+            system("cls");
+            if (result == 0) {
+                printf("|you won, it was heads\n");
+                money = money + (2 * betamount);
+            } else if (result == 1) {
+                printf("|you lost, it was tails\n");
+            }
+        }
+
+    }
+    else if (choice == 'T')
+    {
+
+        printf("|You chose Tails\n|Please enter your bet amount\n");
+        scanf("%d",&betamount);
+        if(money<betamount)
+        {
+
+            printf("|hold on there are you trying to rob us???\n|You're heading back to main menu...\n");
+            Sleep(2000);
+
+        }
+        else {
+
+
+            money = money - betamount;
+            system("cls");
+            if (result == 1) {
+                printf("|you won, it was tails\n");
+                money = money + (2 * betamount);
+
+            } else if (result == 0) {
+                printf("|you lost, it was heads\n");
+            }
+        }
+
+    }
+    else{
+        printf("|enter sth proper pls\n");
+    }
+    printf("\n|your current money is: $%d\n",money);
+    printf("|press enter to continue...\n");
+    fflush(stdin);
+
+
+    fgets(enter,2,stdin);
+
+
+
+
+
+    return money;
 }
 
 
