@@ -10,8 +10,8 @@ int roller();
 char lastrollscolor[7];
 int lastrollsnum[5];
 
-// ill fix some text formatting issues and polish others(done??)
-// ill add true last rolls (almost done)
+// ill fix some text formatting issues and polish others(done)
+// ill add true last rolls (done)
 // might add true spinning wheel with so-called animation (done)
 // might add account/login system
 
@@ -44,7 +44,7 @@ void displayMenu()
 
         printf("     >>>>> Roul.exe <<<<<\n\n|Type what you want to do\n|-----------------------------\n");
         printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|0) Quit\n>");
-        printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
+        //printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
         scanf("%d", &choice);
         if (choice == 1) {
             money = playroulet(money,&turn);
@@ -157,12 +157,12 @@ int playroulet(int amount, int* turn)
     int betamount=0;
     int money = amount;
     system("cls");
-    printf("|last rolls were: 5(b) 12(r) 17(b) 28(r) 31(b)\n----------------------\n"); // ill fix this later
+    printf("|last rolls were: %d(%c) %d(%c) %d(%c) %d(%c) %d(%c)\n----------------------\n",lastrollsnum[0],lastrollscolor[0],lastrollsnum[1],lastrollscolor[1],lastrollsnum[2],lastrollscolor[2],lastrollsnum[3],lastrollscolor[3],lastrollsnum[4],lastrollscolor[4]); // ill fix this later
     printf("|you're playing roulette please enter your bet color\n"
            "\n|1)Black\n|2)Red\n|3)Green\n|4)Cancel the action...\n");
-    printf("(#WIP#)TURN: %d(#WIP#)\n",*turn); // for debugging
-    printf("(#WIP#)0>%d  1>%d  2>%d  3>%d  4>%d(#WIP#)\n",lastrollsnum[0],lastrollsnum[1],lastrollsnum[2],lastrollsnum[3],lastrollsnum[4]);// for debugging
-    printf("(#WIP#)0>%c  1>%c  2>%c  3>%c  4>%c(#WIP#)\n",lastrollscolor[0],lastrollscolor[1],lastrollscolor[2],lastrollscolor[3],lastrollscolor[4]); // for debugging
+    //printf("(#WIP#)TURN: %d(#WIP#)\n",*turn); // for debugging
+    //printf("(#WIP#)0>%d  1>%d  2>%d  3>%d  4>%d(#WIP#)\n",lastrollsnum[0],lastrollsnum[1],lastrollsnum[2],lastrollsnum[3],lastrollsnum[4]);// for debugging
+    //printf("(#WIP#)0>%c  1>%c  2>%c  3>%c  4>%c(#WIP#)\n",lastrollscolor[0],lastrollscolor[1],lastrollscolor[2],lastrollscolor[3],lastrollscolor[4]); // for debugging
 
 
 
@@ -170,18 +170,35 @@ int playroulet(int amount, int* turn)
     scanf("%d",&color);
 
     system("cls");
-    if(color==1)
-    { printf("|your choice was Black\n");
+    if(color==1) {
+        printf("|your choice was Black\n");
+        printf("|if you want to go all in type -1\n");
         printf("|please enter your bet amount\n$");
-        scanf("%d",&betamount);}
+        scanf("%d", &betamount);
+        if (betamount == -1) {
+            betamount = money;//making all in
+        }
+    }
     else if(color == 2)
     { printf("|your choice was red\n");
+        printf("|if you want to go all in type -1\n");
         printf("|please enter your bet amount\n$");
-        scanf("%d",&betamount);}
+        scanf("%d",&betamount);
+        if (betamount==-1)
+        {
+            betamount = money;//making all in
+        }
+    }
     else if(color == 3)
     { printf("|your choice was green\n");
+
+        printf("|if you want to go all in type -1\n");
         printf("|please enter your bet amount\n$");
-        scanf("%d",&betamount);}
+        scanf("%d", &betamount);
+        if (betamount == -1) {
+            betamount = money;//making all in
+        }
+    }
     else if(color ==4)
     { printf("|you're heading back to choosing color menu\n");
         }
