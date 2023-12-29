@@ -8,13 +8,15 @@ void displayMenu();
 int playroulet(int amount, int* turn); // using pointers to return more than one data from function
 int roller();
 int playcoin(int amount);
+void flipanim();
 char lastrollscolor[7];
 int lastrollsnum[5];
 
-// ill fix some text formatting issues and polish others(done)
+// ill fix some of the text formatting issues and polish others(done)
 // ill add true last rolls (done)
 // might add true spinning wheel with so-called animation (done)
 // might add account/login system
+// coin_flip (done)
 
 
 
@@ -43,7 +45,7 @@ void displayMenu()
     while (choice !=0) {
         system("cls");
 
-        printf("     >>>>> Roul.exe <<<<<\n\n|Type what you want to do\n|-----------------------------\n");
+        printf("     >>>>> Roul.exe <<<<<               |RoulWallet: $%d|\n\n|Type what you want to do\n|-----------------------------\n",money);
         printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|3) Play Coinflip\n|0) Quit\n>");
         //printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
         scanf("%d", &choice);
@@ -319,14 +321,14 @@ int roller()
             printf("\n      |-<---<---<---<--|");
             printf("\n      | %3d < %2d > %2d  |", wheel[i], wheel[i + 1], wheel[i + 2]);
             printf("\n      |-<---<---<---<--|");
-            Sleep(65);
+            Sleep(40);
             system("cls");
 
             printf("      >>>> |Rollin| <<<<");
             printf("\n      |---<---<---<---<|");
             printf("\n      | %3d < %2d > %2d  |", wheel[i], wheel[i + 1], wheel[i + 2]);
             printf("\n      |---<---<---<---<|");
-            Sleep(65);
+            Sleep(40);
             system("cls");
         }
 
@@ -338,14 +340,14 @@ int roller()
         printf("\n      |-<---<---<---<--|");
         printf("\n      | %3d < %2d > %2d  |", wheel[i], wheel[i + 1], wheel[i + 2]);
         printf("\n      |-<---<---<---<--|");
-        Sleep(110);
+        Sleep(60);
         system("cls");
 
         printf("      >>>> |Rollin| <<<<");
         printf("\n      |---<---<---<---<|");
         printf("\n      | %3d < %2d > %2d  |", wheel[i], wheel[i + 1], wheel[i + 2]);
         printf("\n      |---<---<---<---<|");
-        Sleep(110);
+        Sleep(60);
         system("cls");
         result = wheel[i+1];
     }
@@ -370,6 +372,9 @@ int playcoin(int amount)
 
     result=rand() % 2;//#WIP#
 
+
+
+
     system("cls");
 
     if (choice == 'H')
@@ -380,11 +385,13 @@ int playcoin(int amount)
         if(money<betamount)
         {
 
+
                 printf("|hold on there are you trying to rob us???\n|You're heading back to main menu...\n");
                 Sleep(2000);
 
         }
         else {
+            flipanim();
             money = money - betamount;
             system("cls");
             if (result == 0) {
@@ -409,6 +416,7 @@ int playcoin(int amount)
 
         }
         else {
+            flipanim();
 
 
             money = money - betamount;
@@ -438,6 +446,59 @@ int playcoin(int amount)
 
 
     return money;
+}
+
+void flipanim()
+{
+    system("cls");
+    printf("\n\n\n\n      _");
+    printf("\n #####################");
+    Sleep(200);
+    system("cls");
+
+    printf("\n\n\n       /");
+    printf("\n\n #####################");
+    Sleep(250);
+    system("cls");
+
+    printf("\n\n        |");
+    printf("\n\n\n #####################");
+    Sleep(300);
+    system("cls");
+
+    printf("\n         \\");
+    printf("\n\n\n\n #####################");
+    Sleep(350);
+    system("cls");
+
+    printf("          _");
+    printf("\n\n\n\n\n #####################");
+    Sleep(400);
+    system("cls");
+
+    printf("\n           /");
+    printf("\n\n\n\n #####################");
+    Sleep(300);
+    system("cls");
+
+    printf("\n\n            |");
+    printf("\n\n\n #####################");
+    Sleep(250);
+    system("cls");
+
+    printf("\n\n\n             \\");
+    printf("\n\n #####################");
+    Sleep(225);
+    system("cls");
+
+    printf("\n\n\n\n              _");
+    printf("\n #####################");
+    Sleep(200);
+    system("cls");
+
+
+
+
 }
 
 
