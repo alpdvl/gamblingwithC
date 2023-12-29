@@ -7,7 +7,7 @@
 void displayMenu();
 int playroulet(int amount, int* turn); // using pointers to return more than one data from function
 int roller();
-char lastrollscolor[6];
+char lastrollscolor[7];
 int lastrollsnum[5];
 
 // ill fix some text formatting issues and polish others(done??)
@@ -149,7 +149,6 @@ int playroulet(int amount, int* turn)
 
 
 
-
     char red[4]="RED";char black[6]="BLACK";char green[6]="GREEN";
     int result;
     char enter[2];
@@ -164,7 +163,12 @@ int playroulet(int amount, int* turn)
     printf("(#WIP#)TURN: %d(#WIP#)\n",*turn); // for debugging
     printf("(#WIP#)0>%d  1>%d  2>%d  3>%d  4>%d(#WIP#)\n",lastrollsnum[0],lastrollsnum[1],lastrollsnum[2],lastrollsnum[3],lastrollsnum[4]);// for debugging
     printf("(#WIP#)0>%c  1>%c  2>%c  3>%c  4>%c(#WIP#)\n",lastrollscolor[0],lastrollscolor[1],lastrollscolor[2],lastrollscolor[3],lastrollscolor[4]); // for debugging
+
+
+
+
     scanf("%d",&color);
+
     system("cls");
     if(color==1)
     { printf("|your choice was Black\n");
@@ -233,20 +237,31 @@ int playroulet(int amount, int* turn)
         if (result ==1)
         {
             printf("|ROLL WAS: %s\n",black);
-            lastrollscolor[*turn%5]='B'; // deferencing
+            lastrollscolor[6]='B'; // deferencing
         }
         else if(result==2)
         {
             printf("|ROLL WAS: %s\n",red);
-            lastrollscolor[*turn%5]='R';
+            lastrollscolor[6]='R';
         }
         else if(result==3)
         {
             printf("|ROLL WAS: %s\n",green);
-            lastrollscolor[*turn%5]='G';
+            lastrollscolor[6]='G';
         }
 
-        lastrollsnum[*turn%5]=roll;
+
+        lastrollsnum[4]=lastrollsnum[3];
+        lastrollsnum[3]=lastrollsnum[2];
+        lastrollsnum[2]=lastrollsnum[1];
+        lastrollsnum[1]=lastrollsnum[0];
+        lastrollsnum[0]=roll;
+
+        lastrollscolor[4]=lastrollscolor[3];
+        lastrollscolor[3]=lastrollscolor[2];
+        lastrollscolor[2]=lastrollscolor[1];
+        lastrollscolor[1]=lastrollscolor[0];
+        lastrollscolor[0]=lastrollscolor[6];
 
         *turn = *turn + 1;
         printf("|your current money is: $%d\n",money);
