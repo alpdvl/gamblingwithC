@@ -18,7 +18,7 @@ int lastrollsnum[5];
 // might add true spinning wheel with so-called animation (done)
 // might add account/login system
 // coin_flip (done)
-// horse race(almost done)
+// horse race(partially done)
 
 
 
@@ -48,10 +48,10 @@ void displayMenu()
         system("cls");
 
         printf("     >>>>> Roul.exe <<<<<               |RoulWallet: $%d|\n\n|Type what you want to do\n|-----------------------------\n",money);
-        printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|3) Play Coinflip\n|0) Quit\n>");
+        printf("|1) Roulette\n|2) Coinflip\n|3) Horse Race\n|9) Access Your RoulWallet\n|0) Quit\n>");
         //printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
 
-        playrace(money);
+
 
 
 
@@ -59,8 +59,9 @@ void displayMenu()
         if (choice == 1) {
             money = playroulet(money,&turn);
         }
-        else if(choice ==2)
+        else if(choice ==9)
         {
+            choice = 0;
             while(choice !=9) {
                 system("cls");//windows specific function used in here!
                 printf(">>>>> Roul.exe <<<<<\n|1)Deposit\n|2)Withdraw\n|3)Past Transactions\n|9)Back\n-----------------\n");
@@ -150,9 +151,13 @@ void displayMenu()
             }
 
         }
-        else if(choice == 3)
+        else if(choice == 2)
         {
             money = playcoin(money);
+        }
+        else if(choice == 3)
+        {
+            money= playrace(money);
         }
     }
 
@@ -402,7 +407,7 @@ int playcoin(int amount)
     if (choice == 'H')
     {
 
-        printf("|You chose Heads\n|Please enter your bet amount\n");
+        printf("|You chose Heads\n|Please enter your bet amount\n$");
         scanf("%d",&betamount);
         if(money<betamount)
         {
@@ -428,7 +433,7 @@ int playcoin(int amount)
     else if (choice == 'T')
     {
 
-        printf("|You chose Tails\n|Please enter your bet amount\n");
+        printf("|You chose Tails\n|Please enter your bet amount\n$");
         scanf("%d",&betamount);
         if(money<betamount)
         {
@@ -525,6 +530,13 @@ void flipanim()
 
 int playrace(int amount)
 {
+    char enter[2];
+
+    int max;
+    int winner;
+    int wincount;
+    int secondwinner=0;
+
     char road1[200]="";
     char road2[200]="";
     char road3[200]="";
@@ -540,6 +552,9 @@ int playrace(int amount)
     int third=0;
     int fourth=0;
 
+    int sum1=0, sum2=0, sum3=0, sum4=0;
+
+    int betamount;
     int money = amount;
     int choice;
     int result;
@@ -547,11 +562,43 @@ int playrace(int amount)
 
 
     printf("|Currently you're playing coinflip\n");
+    printf("|You have $%d in your RoulWallet\n",money);
     printf("|Pick a horse to bet on\n");
     printf("| 1) Seabiscuit\n"
            "| 2) Justify\n"
            "| 3) American Pharoah\n"
            "| 4) Forte\n");
+
+    // user bet
+
+    fflush(stdin);
+    scanf("%d",&choice);
+
+    printf("|Enter the amount you want to bet:\n$");
+
+    fflush(stdin);
+    scanf("%d",&betamount);
+
+    while (money<betamount)
+    {
+        printf("|You cant bet more than what you have in your RoulWallet\n");
+        printf("|Enter the amount you want to bet:\n$");
+
+        fflush(stdin);
+        scanf("%d",&betamount);
+
+    }
+
+
+
+
+    money = money - betamount;
+
+
+
+
+
+
 
     first=rand()%4+1;
 
@@ -573,21 +620,32 @@ int playrace(int amount)
         fourth = rand()%4+1;
     }
 
+
+    /*
     printf("this is first:%d\n",first);
     printf("this is second:%d\n",second);
-    printf("this is third:%d\n",third);
+    printf("this is third:%d\n",third);         // DEBUGGING AREA
     printf("this is fourth:%d\n",fourth);
 
 
 
     Sleep(3000);
+    */
 
+
+    // part 1 of leadership race
+
+    sum1+= 24/first;
+    sum2+=24/second;
+    sum3+=24/third;
+    sum4+=24/fourth;
 
 
     for (int i = 12; i <= 36; ++i)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
+        printf("___________________________________________________________________________________\n");
         //road1[i]=' ';
 
         // 1st horse................
@@ -651,17 +709,18 @@ int playrace(int amount)
         }
 
 
-
+        printf("\n___________________________________________________________________________________");
 
         Sleep(100);
-        if(35<=i)
+        /* if(35<=i)
         {
             road1[i]=' ';
             road2[i]=' ';
-            road3[i]=' ';
+            road3[i]=' '; // wip
             road4[i]=' ';
 
         }
+         */
     }
 
 
@@ -688,10 +747,22 @@ int playrace(int amount)
         fourth = rand()%4+1;
     }
 
+    // part 2
+
+    sum1+= 24/first;
+    sum2+=24/second;
+    sum3+=24/third;
+    sum4+=24/fourth;
+
+
+
+
+
     for (int i = 36; i <= 60; ++i)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
+        printf("___________________________________________________________________________________\n");
         //road1[i]=' ';
 
         // 1st horse................
@@ -752,8 +823,216 @@ int playrace(int amount)
         {
             road4[i]='F';
             road4[i-fourth]=' ';
-            
+
         }
+
+
+        printf("\n___________________________________________________________________________________");
+
+        Sleep(100);
+    }
+
+
+    //third time
+
+    first=rand()%4+1;
+
+    second = rand()%4+1;
+    while(second==first)
+    {
+        second = rand()%4+1;
+    }
+
+    third = rand()%4+1;
+    while(third == first || third == second)
+    {
+        third = rand()%4+1;
+    }
+
+    fourth = rand()%4+1;
+    while(fourth==third || fourth ==second || fourth == first)
+    {
+        fourth = rand()%4+1;
+    }
+
+    // part 3
+    sum1+= 24/first;
+    sum2+=24/second;
+    sum3+=24/third;
+    sum4+=24/fourth;
+
+    for (int i = 60; i <= 84; ++i)
+    {
+        system("cls");
+        printf("this is WORK IN PROGRESS MODE\n");
+        printf("___________________________________________________________________________________\n");
+        //road1[i]=' ';
+
+        // 1st horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road1[j]);
+
+        }
+        if(i%first==0)
+        {
+            road1[i]='S';
+            road1[i-first]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 2nd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road2[j]);
+
+        }
+        if(i%second==0)
+        {
+            road2[i]='J';
+            road2[i-second]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 3rd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road3[j]);
+
+        }
+        if(i%third==0)
+        {
+            road3[i]='A';
+            road3[i-third]=' ';
+        }
+
+
+
+
+        printf("\n");
+        // 4th horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road4[j]);
+
+        }
+        if(i%fourth==0)
+        {
+            road4[i]='F';
+            road4[i-fourth]=' ';
+
+        }
+
+
+        printf("\n___________________________________________________________________________________");
+
+        Sleep(100);
+    }
+
+
+    //fourth time
+
+    first=rand()%4+1;
+
+    second = rand()%4+1;
+    while(second==first)
+    {
+        second = rand()%4+1;
+    }
+
+    third = rand()%4+1;
+    while(third == first || third == second)
+    {
+        third = rand()%4+1;
+    }
+
+    fourth = rand()%4+1;
+    while(fourth==third || fourth ==second || fourth == first)
+    {
+        fourth = rand()%4+1;
+    }
+
+    // part 4
+    sum1+= 24/first;
+    sum2+=24/second;
+    sum3+=24/third;
+    sum4+=24/fourth;
+
+    for (int i = 84; i <= 108; ++i)
+    {
+        system("cls");
+        printf("this is WORK IN PROGRESS MODE\n");
+        printf("___________________________________________________________________________________\n");
+        //road1[i]=' ';
+
+        // 1st horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road1[j]);
+
+        }
+        if(i%first==0)
+        {
+            road1[i]='S';
+            road1[i-first]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 2nd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road2[j]);
+
+        }
+        if(i%second==0)
+        {
+            road2[i]='J';
+            road2[i-second]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 3rd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road3[j]);
+
+        }
+        if(i%third==0)
+        {
+            road3[i]='A';
+            road3[i-third]=' ';
+        }
+
+
+
+
+        printf("\n");
+        // 4th horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road4[j]);
+
+        }
+        if(i%fourth==0)
+        {
+            road4[i]='F';
+            road4[i-fourth]=' ';
+
+        }
+
+        printf("\n___________________________________________________________________________________");
 
 
 
@@ -761,12 +1040,108 @@ int playrace(int amount)
         Sleep(100);
     }
 
+
+    // printf("\n%d\n%d\n%d\n%d\n",sum1,sum2,sum3,sum4); // debugging
+
+    if(sum1<=sum2)
+    {
+        max = sum2;
+        winner =2;
+        if (max<=sum3)
+        {
+            max=sum3;
+            winner = 3;
+            if (max <= sum4)
+            {
+                max=sum4;
+                winner=4;
+            }
+        }
+        else
+        {
+            if (max <= sum4)
+            {
+                max=sum4;
+                winner=4;
+            }
+        }
+
+    }
+    else{
+        max=sum1;
+        winner=1;
+
+        if (max<=sum3)
+        {
+            max=sum3;
+            winner = 3;
+            if (max <= sum4)
+            {
+                max=sum4;
+                winner=4;
+            }
+        }
+        else
+        {
+            if (max <= sum4)
+            {
+                max=sum4;
+                winner=4;
+            }
+        }
+    }
+    wincount =1;
+
+
+    if (max==sum1 && winner !=1)
+    {wincount+=1;
+    secondwinner=1;
+    }
+    if (max==sum2&& winner !=2)
+    {wincount+=1;
+        secondwinner=2;}
+    if (max==sum3&& winner !=3)
+    {wincount+=1;
+        secondwinner=3;}
+    if (max==sum4&& winner !=4)
+    {wincount+=1;
+        secondwinner=4;}
+
+
+
+    if(wincount==1)
+    {
+        printf("\n|Winner is %d\n",winner);
+        if (choice==winner)
+        {
+            printf("|Congrats you won $%d\n",betamount*4);
+            money= money + betamount*4;
+        }
+        else{ printf("|You lost!\n");}
+    }
+
+    else if(wincount==2) {
+        printf("\n|Winners are %d and %d\n", winner, secondwinner);
+        if(choice == winner || choice == secondwinner)
+        {
+            printf("|Congrats you won $%d\n",betamount*2);
+            money= money + betamount*2;
+        }
+        else{ printf("|You lost!\n");}
+    }
+    else{ printf("|!Unexpected Result!\n");}
+
+
+
+    printf("|You have $%d in your RoulWallet\n",money);
+    printf("|press enter to continue...\n");
     fflush(stdin);
-    scanf("%d",&choice);
 
 
+    fgets(enter,2,stdin);
 
 
+    return money;
 
 
 
