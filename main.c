@@ -8,6 +8,7 @@ void displayMenu();
 int playroulet(int amount, int* turn); // using pointers to return more than one data from function
 int roller();
 int playcoin(int amount);
+int playrace(int amount);
 void flipanim();
 char lastrollscolor[7];
 int lastrollsnum[5];
@@ -17,6 +18,7 @@ int lastrollsnum[5];
 // might add true spinning wheel with so-called animation (done)
 // might add account/login system
 // coin_flip (done)
+// horse race(partially done)
 
 
 
@@ -48,6 +50,11 @@ void displayMenu()
         printf("     >>>>> Roul.exe <<<<<               |RoulWallet: $%d|\n\n|Type what you want to do\n|-----------------------------\n",money);
         printf("|1) Play Roulette\n|2) Access Your RoulWallet\n|3) Play Coinflip\n|0) Quit\n>");
         //printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
+
+        playrace(money);
+
+
+
         scanf("%d", &choice);
         if (choice == 1) {
             money = playroulet(money,&turn);
@@ -230,7 +237,22 @@ int playroulet(int amount, int* turn)
             else  { printf("|you missed the green fortune...");}
         }
         else {
-            if (color == 1) {
+
+            if (color ==3)
+            {
+                if (roll % 2 == 1)
+                {
+                    printf("|you lost!\n");
+                    result = 1;
+                }
+                else
+                {
+                    printf("|you lost!\n");
+                    result = 2;
+                }
+
+            }
+            else if (color == 1) {
                 if (roll % 2 == 1)
                 {
                     printf("|congrats you hit black!\n");
@@ -261,7 +283,7 @@ int playroulet(int amount, int* turn)
         if (result ==1)
         {
             printf("|ROLL WAS: %s\n",black);
-            lastrollscolor[6]='B'; // deferencing
+            lastrollscolor[6]='B'; // dereferencing
         }
         else if(result==2)
         {
@@ -501,4 +523,50 @@ void flipanim()
 
 }
 
+int playrace(int amount)
+{
+    char road1[200];
+    int money = amount;
+    int choice;
+    int result;
+    system("cls");
+
+    printf("|Currently you're playing coinflip\n");
+    printf("|Pick a horse to bet\n");
+    printf("| 1) Seabiscuit\n"
+           "| 2) Justify\n"
+           "| 3) American Pharoah\n"
+           "| 4) Forte\n");
+    for (int i = 0; i < 148; ++i)
+    {
+        system("cls");
+        printf("this is WORK IN PROGRESS MODE\n");
+        road1[i]=' ';
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road1[j]);
+
+        }
+        if(i>0)
+        {
+            road1[i]='A';
+            road1[i-1]=' ';
+
+        }
+
+        Sleep(100);
+    }
+    fflush(stdin);
+    scanf("%d",&choice);
+
+
+
+
+
+
+
+
+
+
+
+}
 
