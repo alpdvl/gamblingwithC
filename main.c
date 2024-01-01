@@ -18,7 +18,7 @@ int lastrollsnum[5];
 // might add true spinning wheel with so-called animation (done)
 // might add account/login system
 // coin_flip (done)
-// horse race(partially done)
+// horse race(almost done)
 
 
 
@@ -530,6 +530,16 @@ int playrace(int amount)
     char road3[200]="";
     char road4[200]="";
 
+    char speed4;
+    char speed3;
+    char speed2;
+    char speed1;
+
+    int first=0;
+    int second=0;
+    int third=0;
+    int fourth=0;
+
     int money = amount;
     int choice;
     int result;
@@ -537,16 +547,48 @@ int playrace(int amount)
 
 
     printf("|Currently you're playing coinflip\n");
-    printf("|Pick a horse to bet\n");
+    printf("|Pick a horse to bet on\n");
     printf("| 1) Seabiscuit\n"
            "| 2) Justify\n"
            "| 3) American Pharoah\n"
            "| 4) Forte\n");
-    for (int i = 1; i < 148; ++i)
+
+    first=rand()%4+1;
+
+    second = rand()%4+1;
+    while(second==first)
+    {
+        second = rand()%4+1;
+    }
+
+    third = rand()%4+1;
+    while(third == first || third == second)
+    {
+        third = rand()%4+1;
+    }
+
+    fourth = rand()%4+1;
+    while(fourth==third || fourth ==second || fourth == first)
+    {
+        fourth = rand()%4+1;
+    }
+
+    printf("this is first:%d\n",first);
+    printf("this is second:%d\n",second);
+    printf("this is third:%d\n",third);
+    printf("this is fourth:%d\n",fourth);
+
+
+
+    Sleep(3000);
+
+
+
+    for (int i = 12; i <= 36; ++i)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
-        road1[i]=' ';
+        //road1[i]=' ';
 
         // 1st horse................
 
@@ -554,9 +596,12 @@ int playrace(int amount)
             printf("%c",road1[j]);
 
         }
+            if(i%first==0)
+            {
+                road1[i]='S';
+                road1[i-first]=' ';
+            }
 
-            road1[i]='A';
-            road1[i-1]=' ';
 
 
         printf("\n");
@@ -567,9 +612,12 @@ int playrace(int amount)
             printf("%c",road2[j]);
 
         }
+        if(i%second==0)
+        {
+            road2[i]='J';
+            road2[i-second]=' ';
+        }
 
-            road2[i]='B';
-            road2[i-1]=' ';
 
 
         printf("\n");
@@ -580,9 +628,13 @@ int playrace(int amount)
             printf("%c",road3[j]);
 
         }
+        if(i%third==0)
+        {
+            road3[i]='A';
+            road3[i-third]=' ';
+        }
 
-            road3[i]='C';
-            road3[i-1]=' ';
+
 
 
         printf("\n");
@@ -592,13 +644,123 @@ int playrace(int amount)
             printf("%c",road4[j]);
 
         }
+        if(i%fourth==0)
+        {
+            road4[i]='F';
+            road4[i-fourth]=' ';
+        }
 
-            road4[i]='D';
-            road4[i-1]=' ';
+
+
+
+        Sleep(100);
+        if(35<=i)
+        {
+            road1[i]=' ';
+            road2[i]=' ';
+            road3[i]=' ';
+            road4[i]=' ';
+
+        }
+    }
+
+
+
+    //second time
+
+    first=rand()%4+1;
+
+    second = rand()%4+1;
+    while(second==first)
+    {
+        second = rand()%4+1;
+    }
+
+    third = rand()%4+1;
+    while(third == first || third == second)
+    {
+        third = rand()%4+1;
+    }
+
+    fourth = rand()%4+1;
+    while(fourth==third || fourth ==second || fourth == first)
+    {
+        fourth = rand()%4+1;
+    }
+
+    for (int i = 36; i <= 60; ++i)
+    {
+        system("cls");
+        printf("this is WORK IN PROGRESS MODE\n");
+        //road1[i]=' ';
+
+        // 1st horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road1[j]);
+
+        }
+        if(i%first==0)
+        {
+            road1[i]='S';
+            road1[i-first]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 2nd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road2[j]);
+
+        }
+        if(i%second==0)
+        {
+            road2[i]='J';
+            road2[i-second]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 3rd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road3[j]);
+
+        }
+        if(i%third==0)
+        {
+            road3[i]='A';
+            road3[i-third]=' ';
+        }
+
+
+
+
+        printf("\n");
+        // 4th horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road4[j]);
+
+        }
+        if(i%fourth==0)
+        {
+            road4[i]='F';
+            road4[i-fourth]=' ';
+            
+        }
+
+
 
 
         Sleep(100);
     }
+
     fflush(stdin);
     scanf("%d",&choice);
 
