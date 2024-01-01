@@ -1,0 +1,36 @@
+## Table of contents
+* [General info](#general-info)
+* [Features](#features)
+* [What did i learn](#What-did-i-learn)
+* [Future of the project](#future-of-the-project)
+
+## General info
+A simple gambling games project to improve my skills and knowledge in C.
+	
+## Features
+* Roulette game
+* Coinflip game
+* Horse racing game
+* Basic text-based animation for each of those games
+* Basic wallet system which includes depositing and withdrawing money
+
+## What did i learn
+* Char and integer arrays
+* Returning multiple values from functions with the help of pointers
+* Manipulating arrays for text formatting
+* What is system specific functions
+* How functions work in C
+* How long can variables be accessed for
+* Pseudo-Random number generating
+* Differences between global and local variables
+* Basic pointer and memory adress knowledge
+* Debugging and handling a project which has more than 500 lines of code
+
+## Future of the project
+* Planning to add account system with C's file handling
+* I might add new gambling games
+* Optimizing animations and calculations
+* Improving readability of the code
+* Improving extensibility of the code
+* Documenting the code via comment lines
+  
