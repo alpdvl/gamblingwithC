@@ -525,11 +525,16 @@ void flipanim()
 
 int playrace(int amount)
 {
-    char road1[200];
+    char road1[200]="";
+    char road2[200]="";
+    char road3[200]="";
+    char road4[200]="";
+
     int money = amount;
     int choice;
     int result;
     system("cls");
+
 
     printf("|Currently you're playing coinflip\n");
     printf("|Pick a horse to bet\n");
@@ -537,21 +542,60 @@ int playrace(int amount)
            "| 2) Justify\n"
            "| 3) American Pharoah\n"
            "| 4) Forte\n");
-    for (int i = 0; i < 148; ++i)
+    for (int i = 1; i < 148; ++i)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
         road1[i]=' ';
+
+        // 1st horse................
+
         for (int j = 0; j <= i; ++j) {
             printf("%c",road1[j]);
 
         }
-        if(i>0)
-        {
+
             road1[i]='A';
             road1[i-1]=' ';
 
+
+        printf("\n");
+
+        // 2nd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road2[j]);
+
         }
+
+            road2[i]='B';
+            road2[i-1]=' ';
+
+
+        printf("\n");
+
+        // 3rd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road3[j]);
+
+        }
+
+            road3[i]='C';
+            road3[i-1]=' ';
+
+
+        printf("\n");
+        // 4th horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road4[j]);
+
+        }
+
+            road4[i]='D';
+            road4[i-1]=' ';
+
 
         Sleep(100);
     }
