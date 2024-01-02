@@ -11,8 +11,9 @@ A simple gambling games project to improve my skills and knowledge in C.
 * Roulette game
 * Coinflip game
 * Horse racing game
-* Basic text-based animation for each of those games
-* Basic wallet system which includes depositing and withdrawing money
+* Basic text-based animation for each of those games to improve the interaction with users 
+* Basic wallet system which includes depositing and withdrawing roul-dollar
+* Arrays for showing last rolls and transactions.
 
 ## What did i learn
 * Char and integer arrays
@@ -28,6 +29,7 @@ A simple gambling games project to improve my skills and knowledge in C.
 
 ## Future of the project
 * Planning to add account system with C's file handling
+* Improving the last rolls and last transactions and other related aspects of the project with the help of file handling and dynamic memory allocation in C 
 * I might add new gambling games
 * Optimizing animations and calculations
 * Improving readability of the code
