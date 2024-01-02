@@ -19,6 +19,7 @@ int lastrollsnum[5];
 // might add account/login system
 // coin_flip (done)
 // horse race(partially done)
+// i will get rid of the repeated parts of the code via functions
 
 
 
@@ -47,7 +48,7 @@ void displayMenu()
     while (choice !=0) {
         system("cls");
 
-        printf("     >>>>> Roul.exe <<<<<               |RoulWallet: $%d|\n\n|Type what you want to do\n|-----------------------------\n",money);
+        printf("     >>>>> Roul.C <<<<<               |RoulWallet: $%d|\n\n|Type what you want to do\n|-----------------------------\n",money);
         printf("|1) Roulette\n|2) Coinflip\n|3) Horse Race\n|9) Access Your RoulWallet\n|0) Quit\n>");
         //printf("(#WIP#) TURN: %d(#WIP#)",turn); // for debugging
 
@@ -561,7 +562,7 @@ int playrace(int amount)
     system("cls");
 
 
-    printf("|Currently you're playing coinflip\n");
+    printf("|Currently you're playing horse race\n");
     printf("|You have $%d in your RoulWallet\n",money);
     printf("|Pick a horse to bet on\n");
     printf("| 1) Seabiscuit\n"
@@ -645,7 +646,7 @@ int playrace(int amount)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
-        printf("___________________________________________________________________________________\n");
+        printf("____________________________________________________________________________________________________________\n");
         //road1[i]=' ';
 
         // 1st horse................
@@ -709,7 +710,7 @@ int playrace(int amount)
         }
 
 
-        printf("\n___________________________________________________________________________________");
+        printf("\n____________________________________________________________________________________________________________\n");
 
         Sleep(100);
         /* if(35<=i)
@@ -762,7 +763,7 @@ int playrace(int amount)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
-        printf("___________________________________________________________________________________\n");
+        printf("____________________________________________________________________________________________________________\n");
         //road1[i]=' ';
 
         // 1st horse................
@@ -827,7 +828,7 @@ int playrace(int amount)
         }
 
 
-        printf("\n___________________________________________________________________________________");
+        printf("\n____________________________________________________________________________________________________________\n");
 
         Sleep(100);
     }
@@ -865,7 +866,7 @@ int playrace(int amount)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
-        printf("___________________________________________________________________________________\n");
+        printf("____________________________________________________________________________________________________________\n");
         //road1[i]=' ';
 
         // 1st horse................
@@ -930,7 +931,7 @@ int playrace(int amount)
         }
 
 
-        printf("\n___________________________________________________________________________________");
+        printf("\n____________________________________________________________________________________________________________\n");
 
         Sleep(100);
     }
@@ -968,7 +969,7 @@ int playrace(int amount)
     {
         system("cls");
         printf("this is WORK IN PROGRESS MODE\n");
-        printf("___________________________________________________________________________________\n");
+        printf("____________________________________________________________________________________________________________\n");
         //road1[i]=' ';
 
         // 1st horse................
@@ -1032,7 +1033,7 @@ int playrace(int amount)
 
         }
 
-        printf("\n___________________________________________________________________________________");
+        printf("\n____________________________________________________________________________________________________________\n");
 
 
 
@@ -1040,6 +1041,113 @@ int playrace(int amount)
         Sleep(100);
     }
 
+
+
+    //fifth time
+
+    first=rand()%4+1;
+
+    second = rand()%4+1;
+    while(second==first)
+    {
+        second = rand()%4+1;
+    }
+
+    third = rand()%4+1;
+    while(third == first || third == second)
+    {
+        third = rand()%4+1;
+    }
+
+    fourth = rand()%4+1;
+    while(fourth==third || fourth ==second || fourth == first)
+    {
+        fourth = rand()%4+1;
+    }
+
+
+
+    // part 5
+    sum1+= 24/first;
+    sum2+=24/second;
+    sum3+=24/third;
+    sum4+=24/fourth;
+
+    for (int i = 108; i <= 132; ++i)
+    {
+        system("cls");
+        printf("this is WORK IN PROGRESS MODE\n");
+        printf("____________________________________________________________________________________________________________\n");
+        //road1[i]=' ';
+
+        // 1st horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road1[j]);
+
+        }
+        if(i%first==0)
+        {
+            road1[i]='S';
+            road1[i-first]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 2nd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road2[j]);
+
+        }
+        if(i%second==0)
+        {
+            road2[i]='J';
+            road2[i-second]=' ';
+        }
+
+
+
+        printf("\n");
+
+        // 3rd horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road3[j]);
+
+        }
+        if(i%third==0)
+        {
+            road3[i]='A';
+            road3[i-third]=' ';
+        }
+
+
+
+
+        printf("\n");
+        // 4th horse................
+
+        for (int j = 0; j <= i; ++j) {
+            printf("%c",road4[j]);
+
+        }
+        if(i%fourth==0)
+        {
+            road4[i]='F';
+            road4[i-fourth]=' ';
+
+        }
+
+        printf("\n____________________________________________________________________________________________________________\n");
+
+
+
+
+        Sleep(100);
+    }
 
     // printf("\n%d\n%d\n%d\n%d\n",sum1,sum2,sum3,sum4); // debugging
 
