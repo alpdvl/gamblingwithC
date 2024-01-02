@@ -19,7 +19,7 @@ int lastrollsnum[5];
 // might add account/login system
 // coin_flip (done)
 // horse race(partially done)
-// i will get rid of the repeated parts of the code via functions
+// i will get rid of the repeated parts of the code through functions
 
 
 
