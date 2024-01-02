@@ -25,7 +25,8 @@ A simple gambling games project to improve my skills and knowledge in C.
 * Pseudo-Random number generating
 * Differences between global and local variables
 * Basic pointer and memory adress knowledge
-* Debugging and handling a project which has more than 500 lines of code
+* Debugging and handling a project which has more than 800 lines of code
+* Very basic knowledge for github
 
 ## Future of the project
 * Planning to add account system with C's file handling
