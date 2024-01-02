@@ -18,12 +18,12 @@ A simple gambling games project to improve my skills and knowledge in C.
 ## What did i learn
 * Char and integer arrays
 * Returning multiple values from functions with the help of pointers
-* Manipulating arrays for text formatting
+* Manipulating arrays for text based animations
 * What is system specific functions
 * How functions work in C
 * How long can variables be accessed for
 * Pseudo-Random number generating
-* Differences between global and local variables
+* Scope rules for variables in C
 * Basic pointer and memory adress knowledge
 * Debugging and handling a project which has more than 800 lines of code
 * Very basic knowledge for github
