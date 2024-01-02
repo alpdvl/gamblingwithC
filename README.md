@@ -6,6 +6,7 @@
 
 ## General info
 A simple gambling games project to improve my skills and knowledge in C.
+Note: It relies heavily* on windows specific functions!
 	
 ## Features
 * Roulette game
