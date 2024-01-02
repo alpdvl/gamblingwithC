@@ -5,7 +5,7 @@
 * [Future of the project](#future-of-the-project)
 
 ## General info
-A simple gambling games project to improve my skills and knowledge in C.
+A simple gambling games project to improve my skills and knowledge in C.<br>
 Note: It relies heavily* on windows specific functions!
 	
 ## Features
